@@ -31,6 +31,17 @@ if (!function_exists('alacrity_authentication_column')) {
     }
 }
 
+if (!function_exists('alacrity_guard_name')) {
+    /*
+     * Returns the name of the guard defined
+     * by the application config
+     */
+    function alacrity_guard_name()
+    {
+        return config('alacrity.core.guard', config('auth.defaults.guard'));
+    }
+}
+
 if (!function_exists('alacrity_auth')) {
     /*
      * Returns the user instance if it exists
@@ -40,16 +51,5 @@ if (!function_exists('alacrity_auth')) {
     function alacrity_auth()
     {
         return \Auth::guard(alacrity_guard_name());
-    }
-}
-
-if (!function_exists('alacrity_guard_name')) {
-    /*
-     * Returns the name of the guard defined
-     * by the application config
-     */
-    function alacrity_guard_name()
-    {
-        return config('alacrity.core.guard', config('auth.defaults.guard'));
     }
 }
