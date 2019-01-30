@@ -14,7 +14,8 @@
     }
   },
   "require": {
-    "illuminate/support": "~5"
+    "illuminate/support": "~5",
+    "laravel/passport": "^7.1"
   },
   "extra": {
     "laravel": {
