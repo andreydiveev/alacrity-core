@@ -23,13 +23,13 @@ return [
     */
 
     // Fully qualified namespace of the User model
-    'user_model_fqn' => App\Models\AlacrityUser::class,
+    'user_model_fqn' => Alacrity\Core\app\Models\AlacrityUser::class,
 
     // The guard that protects the Alacrity secure routes.
     // If null, the config.auth.defaults.guard value will be used.
     'guard' => 'alacrity',
 
-    // The password reset configuration for Backpack.
+    // The password reset configuration for Alacrity.
     // If null, the config.auth.defaults.passwords value will be used.
     'passwords' => 'alacrity',
 
