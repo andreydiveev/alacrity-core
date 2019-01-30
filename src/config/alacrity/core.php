@@ -25,6 +25,12 @@ return [
     // Fully qualified namespace of the User model
     'user_model_fqn' => Alacrity\Core\app\Models\AlacrityUser::class,
 
+    // Username column for authentication
+    // The Alacrity default is the same as the Laravel default (email)
+    // If you need to switch to username, you also need to create that column in your db
+    'authentication_column'      => 'email',
+    'authentication_column_name' => 'Email',
+
     // The guard that protects the Alacrity secure routes.
     // If null, the config.auth.defaults.guard value will be used.
     'guard' => 'alacrity',
