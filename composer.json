@@ -11,7 +11,10 @@
   "autoload": {
     "psr-4": {
       "Alacrity\\Core\\": "src/"
-    }
+    },
+    "files" : [
+      "src/functions.php"
+    ]
   },
   "require": {
     "illuminate/support": "~5",
