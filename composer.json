@@ -20,7 +20,8 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Alacrity\\Core\\CoreServiceProvider"
+        "Alacrity\\Core\\CoreServiceProvider",
+        "Laravel\\Passport\\PassportServiceProvider"
       ]
     }
   }
