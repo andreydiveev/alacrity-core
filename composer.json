@@ -1,0 +1,29 @@
+{
+  "name": "alacrity/core",
+  "description": "alacrity core",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name":"Andrey Diveev",
+      "email":"a.diveev@admitad.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Alacrity\\Core\\": "src/"
+    },
+    "files": [
+      "src/functions.php"
+    ]
+  },
+  "require": {
+    "illuminate/support": "~5"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Alacrity\\Core\\CoreServiceProvider"
+      ]
+    }
+  }
+}
