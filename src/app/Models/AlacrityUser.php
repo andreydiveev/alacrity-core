@@ -2,15 +2,35 @@
 
 namespace Alacrity\Core\app\Models;
 
-use App\User;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Alacrity\Core\app\Notifications\ResetPasswordNotification as ResetPasswordNotification;
 use Tightenco\Parental\HasParentModel;
 
-class AlacrityUser extends User
+class AlacrityUser extends Authenticatable
 {
-    use HasParentModel;
+    use HasParentModel, Notifiable;
 
     protected $table = 'users';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'email', 'password',
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 
     /**
      * Send the password reset notification.

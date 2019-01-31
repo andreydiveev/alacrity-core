@@ -31,6 +31,20 @@ if (!function_exists('alacrity_authentication_column')) {
     }
 }
 
+if (!function_exists('alacrity_users_have_email')) {
+    /**
+     * Check if the email column is present on the user table.
+     *
+     * @return string
+     */
+    function alacrity_users_have_email()
+    {
+        $user_model_fqn = config('alacrity.core.user_model_fqn');
+        $user = new $user_model_fqn();
+        return \Schema::hasColumn($user->getTable(), 'email');
+    }
+}
+
 if (!function_exists('alacrity_guard_name')) {
     /*
      * Returns the name of the guard defined

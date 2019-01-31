@@ -43,7 +43,7 @@ class LoginController extends Controller
 
         // Redirect here after successful login.
         $this->redirectTo = property_exists($this, 'redirectTo') ? $this->redirectTo
-            : alacrity_url('dashboard');
+            : alacrity_url('home');
 
         // Redirect here after logout.
         $this->redirectAfterLogout = property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout

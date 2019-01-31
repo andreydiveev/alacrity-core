@@ -22,7 +22,7 @@ class ResetPasswordNotification extends ResetPassword
                 trans('alacrity::core.password_reset.line_1'),
                 trans('alacrity::core.password_reset.line_2'),
             ])
-            ->action(trans('alacrity::core.password_reset.button'), route('alacrity.auth.password.reset.token', $this->token).'?email='.urlencode($notifiable->getEmailForPasswordReset()))
+            ->action(trans('alacrity::core.password_reset.button'), route('password.reset.token', $this->token).'?email='.urlencode($notifiable->getEmailForPasswordReset()))
             ->line(trans('alacrity::core.password_reset.notice'));
     }
 }

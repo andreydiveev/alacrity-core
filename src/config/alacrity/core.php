@@ -18,6 +18,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Registration Open
+    |--------------------------------------------------------------------------
+    |
+    | Choose whether new users are allowed to register.
+    | This will show up the Register button in the menu and allow access to the
+    | Register functions in AuthController.
+    |
+    | By default the registration is open only on localhost.
+    */
+    'registration_open' => env('ALACRITY_REGISTRATION_OPEN', env('APP_ENV') === 'local'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Authentication
     |--------------------------------------------------------------------------
     */

@@ -41,8 +41,10 @@ class CoreServiceProvider extends ServiceProvider
 
         // use the vendor configuration file as fallback
         $this->mergeConfigFrom(__DIR__.'/config/alacrity/core.php', 'alacrity.core');
+        $this->mergeConfigFrom(__DIR__.'/config/passport.php', 'passport');
 
         $this->loadTranslationsFrom(realpath(__DIR__.'/resources/lang'), 'alacrity');
+        $this->loadViewsFrom(realpath(__DIR__.'/resources/views'), 'alacrity');
 
         $this->addCustomAuthConfigurationValues();
         $this->setupRoutes($this->app->router);
@@ -54,6 +56,11 @@ class CoreServiceProvider extends ServiceProvider
         // add the alacrity_users authentication provider to the configuration
         app()->config['auth.providers'] = app()->config['auth.providers'] +
             [
+                'users' => [
+                    'driver' => 'eloquent',
+                    'model'  => config('alacrity.core.user_model_fqn'),
+                ],
+
                 'alacrity' => [
                     'driver'  => 'eloquent',
                     'model'   => config('alacrity.core.user_model_fqn'),
@@ -72,7 +79,7 @@ class CoreServiceProvider extends ServiceProvider
         app()->config['auth.guards'] = app()->config['auth.guards'] +
             [
                 'alacrity' => [
-                    'driver'   => 'passport',
+                    'driver'   => 'session',
                     'provider' => 'alacrity',
                 ],
             ];
