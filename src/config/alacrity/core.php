@@ -38,6 +38,17 @@ return [
     // Fully qualified namespace of the User model
     'user_model_fqn' => Alacrity\Core\app\Models\AlacrityUser::class,
 
+
+    // Can be a single class or an array of clases
+    'middleware_class' => [
+        \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        \Alacrity\Core\app\Http\Middleware\UseBackpackAuthGuardInsteadOfDefaultAuthGuard::class,
+    ],
+    // Alias for that middleware
+    'middleware_key' => 'core',
+    // Note: It's recommended to use the backpack_middleware() helper everywhere, which pulls this key for you.
+
+
     // Username column for authentication
     // The Alacrity default is the same as the Laravel default (email)
     // If you need to switch to username, you also need to create that column in your db
@@ -46,10 +57,24 @@ return [
 
     // The guard that protects the Alacrity secure routes.
     // If null, the config.auth.defaults.guard value will be used.
-    'guard' => 'alacrity',
+    'guard' => 'alacrity-web',
 
     // The password reset configuration for Alacrity.
     // If null, the config.auth.defaults.passwords value will be used.
-    'passwords' => 'alacrity',
+    'passwords' => 'alacrity-passwords-broker',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Passport
+    |--------------------------------------------------------------------------
+    */
+
+    'passport_setup_routes' => true,
+    'passport_enable_implicit_grants' => true,
+
+    // in seconds, unlimited if null
+    // NOTE: Personl Access Tokens will be unlimited anyway
+    'passport_token_ttl' => null,
+    'passport_refresh_token_expires_in_days' => null,
 
 ];

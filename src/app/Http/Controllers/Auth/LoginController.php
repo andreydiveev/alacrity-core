@@ -29,9 +29,6 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $guard = alacrity_guard_name();
-
-        $this->middleware("guest:$guard", ['except' => 'logout']);
 
         // ----------------------------------
         // Use the alacrity prefix in all routes

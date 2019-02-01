@@ -45,6 +45,18 @@ if (!function_exists('alacrity_users_have_email')) {
     }
 }
 
+if (!function_exists('alacrity_middleware')) {
+    /**
+     * Return the key of the middleware used across Alacrity.
+     *
+     * @return string
+     */
+    function alacrity_middleware()
+    {
+        return config('alacrity.core.middleware_key', 'core');
+    }
+}
+
 if (!function_exists('alacrity_guard_name')) {
     /*
      * Returns the name of the guard defined

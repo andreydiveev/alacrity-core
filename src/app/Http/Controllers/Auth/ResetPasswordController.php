@@ -43,10 +43,6 @@ class ResetPasswordController extends Controller
      */
     public function __construct()
     {
-        $guard = alacrity_guard_name();
-
-        $this->middleware("guest:$guard");
-
         if (!alacrity_users_have_email()) {
             abort(501, trans('alacrity::core.no_email_column'));
         }

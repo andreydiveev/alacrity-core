@@ -2,6 +2,7 @@
 
 namespace Alacrity\Core\app\Http\Controllers;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,17 +14,15 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $guard = alacrity_guard_name();
-
-        $this->middleware("auth:$guard");
     }
 
     /**
      * Show the application dashboard.
      *
+     * @param Request $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         return view('alacrity::home');
     }

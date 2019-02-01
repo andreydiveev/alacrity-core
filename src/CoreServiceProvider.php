@@ -10,6 +10,7 @@ namespace Alacrity\Core;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Passport\Passport;
 use Route;
 
 class CoreServiceProvider extends ServiceProvider
@@ -47,7 +48,25 @@ class CoreServiceProvider extends ServiceProvider
         $this->loadViewsFrom(realpath(__DIR__.'/resources/views'), 'alacrity');
 
         $this->addCustomAuthConfigurationValues();
+        $this->registerMiddlewareGroup($this->app->router);
         $this->setupRoutes($this->app->router);
+        $this->setupPassport();
+    }
+
+    public function registerMiddlewareGroup(Router $router)
+    {
+        $middleware_key = config('alacrity.core.middleware_key');
+        $middleware_class = config('alacrity.core.middleware_class');
+
+        if (!is_array($middleware_class)) {
+            $router->pushMiddlewareToGroup($middleware_key, $middleware_class);
+
+            return;
+        }
+
+        foreach ($middleware_class as $item) {
+            $router->pushMiddlewareToGroup($middleware_key, $item);
+        }
     }
 
     public function addCustomAuthConfigurationValues()
@@ -56,12 +75,7 @@ class CoreServiceProvider extends ServiceProvider
         // add the alacrity_users authentication provider to the configuration
         app()->config['auth.providers'] = app()->config['auth.providers'] +
             [
-                'users' => [
-                    'driver' => 'eloquent',
-                    'model'  => config('alacrity.core.user_model_fqn'),
-                ],
-
-                'alacrity' => [
+                'alacrity-users' => [
                     'driver'  => 'eloquent',
                     'model'   => config('alacrity.core.user_model_fqn'),
                 ],
@@ -69,8 +83,8 @@ class CoreServiceProvider extends ServiceProvider
         // add the alacrity_users password broker to the configuration
         app()->config['auth.passwords'] = app()->config['auth.passwords'] +
             [
-                'alacrity' => [
-                    'provider'  => 'alacrity',
+                'alacrity-passwords-broker' => [
+                    'provider'  => 'alacrity-users',
                     'table'     => 'password_resets',
                     'expire'    => 60,
                 ],
@@ -78,9 +92,9 @@ class CoreServiceProvider extends ServiceProvider
         // add the alacrity_users guard to the configuration
         app()->config['auth.guards'] = app()->config['auth.guards'] +
             [
-                'alacrity' => [
-                    'driver'   => 'session',
-                    'provider' => 'alacrity',
+                'alacrity-passport' => [
+                    'driver' => 'passport',
+                    'provider' => 'alacrity-users',
                 ],
             ];
     }
@@ -103,5 +117,22 @@ class CoreServiceProvider extends ServiceProvider
         }
 
         $this->loadRoutesFrom($routeFilePathInUse);
+    }
+
+    public function setupPassport()
+    {
+        // setup Passport routes if enabled
+        if (config('alacrity.core.passport_setup_routes')) {
+            Passport::routes();
+        }
+
+        // enable implicit grants
+        if (config('alacrity.core.passport_enable_implicit_grants')) {
+            Passport::enableImplicitGrant();
+        }
+
+        // Passport::tokensExpireIn(Carbon::now()->addSeconds(config('alacrity.core.passport_token_ttl')));
+        // Passport::refreshTokensExpireIn(Carbon::now()->addSeconds(config('alacrity.core.passport_refresh_token_ttl')));
+
     }
 }

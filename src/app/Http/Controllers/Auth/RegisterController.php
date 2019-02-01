@@ -31,10 +31,6 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $guard = alacrity_guard_name();
-
-        $this->middleware("guest:$guard");
-
         // Where to redirect users after login / registration.
         $this->redirectTo = property_exists($this, 'redirectTo') ? $this->redirectTo
             : alacrity_url('home');

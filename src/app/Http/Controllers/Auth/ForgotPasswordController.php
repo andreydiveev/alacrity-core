@@ -30,9 +30,6 @@ class ForgotPasswordController extends Controller
      */
     public function __construct()
     {
-        $guard = alacrity_guard_name();
-
-        $this->middleware("guest:$guard");
     }
 
     // -------------------------------------------------------

@@ -6,11 +6,15 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Alacrity\Core\app\Notifications\ResetPasswordNotification as ResetPasswordNotification;
+use Alacrity\Core\app\Notifications\VerifyEmailNotification as VerifyEmailNotification;
+use Laravel\Passport\HasApiTokens;
 use Tightenco\Parental\HasParentModel;
 
-class AlacrityUser extends Authenticatable
+class AlacrityUser extends Authenticatable implements MustVerifyEmail
 {
-    use HasParentModel, Notifiable;
+    use HasApiTokens,
+        HasParentModel,
+        Notifiable;
 
     protected $table = 'users';
 
@@ -42,6 +46,16 @@ class AlacrityUser extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));
+    }
+
+    /**
+     * Send the email verification notification.
+     *
+     * @return void
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmailNotification());
     }
 
     /**
