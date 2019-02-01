@@ -57,7 +57,7 @@ return [
 
     // The guard that protects the Alacrity secure routes.
     // If null, the config.auth.defaults.guard value will be used.
-    'guard' => 'alacrity-web',
+    'guard' => 'alacrity-passport',
 
     // The password reset configuration for Alacrity.
     // If null, the config.auth.defaults.passwords value will be used.
