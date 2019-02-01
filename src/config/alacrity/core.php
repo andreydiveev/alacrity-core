@@ -36,13 +36,13 @@ return [
     */
 
     // Fully qualified namespace of the User model
-    'user_model_fqn' => Alacrity\Core\app\Models\AlacrityUser::class,
+    'user_model_fqn' => Alacrity\Core\App\Models\AlacrityUser::class,
 
 
     // Can be a single class or an array of clases
     'middleware_class' => [
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        \Alacrity\Core\app\Http\Middleware\UseBackpackAuthGuardInsteadOfDefaultAuthGuard::class,
+        \Alacrity\Core\App\Http\Middleware\UseBackpackAuthGuardInsteadOfDefaultAuthGuard::class,
     ],
     // Alias for that middleware
     'middleware_key' => 'core',
@@ -57,7 +57,7 @@ return [
 
     // The guard that protects the Alacrity secure routes.
     // If null, the config.auth.defaults.guard value will be used.
-    'guard' => 'alacrity-passport',
+    'guard' => 'alacrity-web',
 
     // The password reset configuration for Alacrity.
     // If null, the config.auth.defaults.passwords value will be used.

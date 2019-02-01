@@ -1,12 +1,12 @@
 <?php
 
-namespace Alacrity\Core\app\Models;
+namespace Alacrity\Core\App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Alacrity\Core\app\Notifications\ResetPasswordNotification as ResetPasswordNotification;
-use Alacrity\Core\app\Notifications\VerifyEmailNotification as VerifyEmailNotification;
+use Alacrity\Core\App\Notifications\ResetPasswordNotification as ResetPasswordNotification;
+use Alacrity\Core\App\Notifications\VerifyEmailNotification as VerifyEmailNotification;
 use Laravel\Passport\HasApiTokens;
 use Tightenco\Parental\HasParentModel;
 

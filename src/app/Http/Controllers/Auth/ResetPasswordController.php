@@ -1,8 +1,8 @@
 <?php
 
-namespace Alacrity\Core\app\Http\Controllers\Auth;
+namespace Alacrity\Core\App\Http\Controllers\Auth;
 
-use Alacrity\Core\app\Http\Controllers\Controller;
+use Alacrity\Core\App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;

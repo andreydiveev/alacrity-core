@@ -89,10 +89,17 @@ class CoreServiceProvider extends ServiceProvider
                     'expire'    => 60,
                 ],
             ];
-        // add the alacrity_users guard to the configuration
+        // add the alacrity_users guards to the configuration
         app()->config['auth.guards'] = app()->config['auth.guards'] +
             [
-                'alacrity-passport' => [
+                // stateful
+                'alacrity-web' => [
+                    'driver' => 'session',
+                    'provider' => 'alacrity-users',
+                ],
+
+                // stateless
+                'alacrity-api' => [
                     'driver' => 'passport',
                     'provider' => 'alacrity-users',
                 ],

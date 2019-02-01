@@ -1,6 +1,6 @@
 <?php
 
-namespace Alacrity\Core\app\Http\Controllers;
+namespace Alacrity\Core\App\Http\Controllers;
 
 use Illuminate\Http\Request;
 

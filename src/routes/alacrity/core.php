@@ -11,7 +11,7 @@
 
 Route::group(
     [
-        'namespace'  => 'Alacrity\Core\app\Http\Controllers',
+        'namespace'  => 'Alacrity\Core\App\Http\Controllers',
         'middleware' => ['web'],
         'prefix'     => config('alacrity.core.route_prefix'),
     ],
@@ -71,17 +71,16 @@ Route::group(
                 Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
                 Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 
-                Route::get('home', 'HomeController@index')->name('home');
+                Route::get('home', 'HomeController@index')->name('home')->middleware('verified');
             });
 
-            Route::get('im', 'GameController@index')->name('ko')->middleware('verified');
         }
 
     });
 
 Route::group(
     [
-        'namespace'  => 'Alacrity\Core\app\Http\Controllers',
+        'namespace'  => 'Alacrity\Core\App\Http\Controllers',
         'middleware' => ['api'],
         'prefix'     => config('alacrity.core.route_prefix'),
     ],

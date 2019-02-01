@@ -1,6 +1,6 @@
 <?php
 
-namespace Alacrity\Core\app\Notifications;
+namespace Alacrity\Core\App\Notifications;
 
 use Illuminate\Auth\Notifications\ResetPassword as ResetPassword;
 use Illuminate\Notifications\Messages\MailMessage;
